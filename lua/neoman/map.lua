@@ -47,6 +47,7 @@ keymap.unmap = function (m, lhs)
 		vim.keymap.del(m, lhs)
 
 		table.remove(keymap.saved_keys, result)
+		return 0
 	end
 end
 

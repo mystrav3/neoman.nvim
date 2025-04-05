@@ -37,8 +37,8 @@ local input_on_enter = function ()
 	ui.input_win.close()
 	ui.input_open = false
 
-	ui.keymaps.unmap({"n", "v", "i"}, "<cr>")
-	ui.keymaps.unmap("n", "<esc>")
+	vim.keymap.del({"n", "v", "i"}, "<cr>")
+	vim.keymap.del("n", "<esc>")
 
 	vim.cmd("stopinsert")
 
@@ -49,7 +49,7 @@ local input_on_enter = function ()
 
 		vim.cmd(string.format('read !man %s', ui.query))
 
-		ui.keymaps.map("n", "<esc>", function () display_on_esc() end)
+		vim.keymap.set("n", "<esc>", function () display_on_esc() end)
 	else
 		vim.notify("No Search Term Entered", 4)
 	end
@@ -63,8 +63,8 @@ local input_on_esc = function ()
 
 	vim.cmd("stopinsert")
 
-	ui.keymaps.unmap({"n", "v", "i"}, "<cr>")
-	ui.keymaps.unmap("n", "<esc>")
+	vim.keymap.del({"n", "v", "i"}, "<cr>")
+	vim.keymap.del("n", "<esc>")
 end
 
 
@@ -82,8 +82,8 @@ ui.search = function ()
 
 	vim.cmd("startinsert")
 
-	ui.keymaps.map({"n", "v", "i"}, "<cr>", function () input_on_enter() end)
-	ui.keymaps.map("n", "<esc>", function () input_on_esc() end)
+	vim.keymap.set({"n", "v", "i"}, "<cr>", function () input_on_enter() end)
+	vim.keymap.set("n", "<esc>", function () input_on_esc() end)
 end
 
 
@@ -97,7 +97,7 @@ ui.toggle_display = function ()
 
 			vim.cmd(string.format("read !man %s", ui.query))
 
-			ui.keymaps.map("n", "<esc>", function () display_on_esc() end)
+			vim.keymap.set("n", "<esc>", function () display_on_esc() end)
 		else
 			vim.notify("No Search Term Entered", 4)
 		end
