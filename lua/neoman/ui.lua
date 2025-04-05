@@ -27,7 +27,7 @@ local display_on_esc = function ()
 	ui.display_win.close()
 	ui.display_open = false
 
-	ui.keymaps.unmap("n", "<esc>")
+	vim.keymap.del("n", "<esc>")
 end
 
 
