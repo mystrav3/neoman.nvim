@@ -49,6 +49,8 @@ local input_on_enter = function ()
 
 		vim.cmd(string.format('read !man %s', ui.query))
 
+		vim.api.nvim_win_set_cursor(ui.display_win.win_id, {1, 1})
+
 		vim.keymap.set("n", "<esc>", function () display_on_esc() end)
 	else
 		vim.notify("No Search Term Entered", 4)
@@ -89,18 +91,13 @@ end
 
 ui.toggle_display = function ()
 	if ui.display_open == false then
-		if ui.query ~= nil or ui.query ~= "" then
-			ui.display_win.set_config(ui.config.default_display)
-			ui.display_win.create()
-			ui.display_open = true
+		ui.display_win.set_config(ui.config.default_display)
+		ui.display_win.create()
+		ui.display_open = true
 
+		ui.file_cache.load(ui.display_win)
 
-			vim.cmd(string.format("read !man %s", ui.query))
-
-			vim.keymap.set("n", "<esc>", function () display_on_esc() end)
-		else
-			vim.notify("No Search Term Entered", 4)
-		end
+		vim.keymap.set("n", "<esc>", function () display_on_esc() end)
 	elseif ui.display_open == true then
 		display_on_esc()
 	end
