@@ -9,14 +9,14 @@ local dis_h = 40
 
 function Center_height(in_h)
 	local height = vim.api.nvim_win_get_height(0)
-	local out = ((height / 2))
+	local out = ((height / 2) - (in_h / 2))
 	return out
 end
 
 
 function Center_width(in_w)
 	local width = vim.api.nvim_win_get_width(0)
-	local out = ((width / 2))
+	local out = ((width / 2) - (in_w / 2))
 	return out
 end
 
