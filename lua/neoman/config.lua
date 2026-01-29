@@ -3,7 +3,7 @@ local Config = {}
 
 local inp_w = 40
 local inp_h = 1
-local dis_w = 120
+local dis_w = 140
 local dis_h = 40
 
 
