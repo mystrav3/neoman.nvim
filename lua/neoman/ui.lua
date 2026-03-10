@@ -47,7 +47,7 @@ local input_on_enter = function ()
 		ui.display_win.create()
 		ui.display_open = true
 
-		vim.cmd(string.format('read !man %s', ui.query))
+		vim.cmd(string.format('read !%s', ui.query))
 
 		vim.api.nvim_win_set_cursor(ui.display_win.win_id, {1, 1})
 
